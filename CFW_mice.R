@@ -3,7 +3,7 @@ geno <- read.csv(gzfile("geno.txt.gz"), sep=" ")
 map <- read.csv("map.txt", sep=" ")
 
 ### phenotype selection
-pheno_var <- pheno[(pheno$discard=="no"),c("id","TA", "EDL","bw1", "taillength", "tibia", "testisweight")]
+pheno_var <- pheno[(pheno$discard=="no"),c("id","TA", "EDL","bw1","PPIweight", "taillength", "tibia", "testisweight", "gastroc", "plantaris", "soleus")]
 pheno_var_noNa <- na.omit(pheno_var)
 
 p = ncol(pheno_var_noNa)-1 # number of traits
