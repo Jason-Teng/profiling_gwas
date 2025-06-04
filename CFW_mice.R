@@ -25,13 +25,14 @@ write.table(P, "cfw_gemma_pheno.txt",sep="\t", col.names = FALSE, row.names = FA
 write.csv(P, "cfw_pheno.csv", row.names = FALSE)
 
 G <- PandG[,3:(2+k)]
+G <- round(G)
 G_gemma <- cbind(map[, c("id","alt","ref")], t(G))
 write.table(G_gemma, "cfw_gemma_geno.txt", sep=",",col.names = FALSE, row.names = FALSE)
 
 map_gemma<- map[,c("id","pos","chr")]
 write.table(map_gemma, "cfw_gemma_annot.txt",sep="\t", col.names = FALSE, row.names = FALSE)
 
-G <- round(G)-1 # the original datast is 0, 1,2
+G <- -1 # the original datast is 0, 1,2
 
 maf_values <- apply(G, 2, calculate_maf) 
 
