@@ -1,7 +1,7 @@
 
 ###################  function for GWAS  ##################
 
-profiling_gwas <- function(P, Genotypes, K, ID, name="gwas"){
+profiling_gwas <- function(P, Genotypes, K, ID, name="gwas", core = 4){
   start_time <- Sys.time()
   n = nrow(P)
   m = ncol(P)
@@ -112,7 +112,9 @@ profiling_gwas <- function(P, Genotypes, K, ID, name="gwas"){
   library(foreach)
   
   # Detect number of available cores
-  num_cores <- detectCores() - 14 # Leave one core free
+  num_cores <- core  # safe: leaves one core for OS
+  if (num_cores < 1) num_cores <- 1  # ensure at least 1 core
+  
   cl <- makeCluster(num_cores)
   registerDoParallel(cl)
   p <- ncol(Z0)
