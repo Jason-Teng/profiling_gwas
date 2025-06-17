@@ -1,5 +1,8 @@
 
 ###################  function for GWAS  ##################
+# parallel computing
+library(doParallel)
+library(foreach)
 
 profiling_gwas <- function(P, Genotypes, K, ID, name="gwas", core = 4){
   start_time <- Sys.time()
@@ -106,10 +109,6 @@ profiling_gwas <- function(P, Genotypes, K, ID, name="gwas", core = 4){
   n <- nrow(X)
   m <- ncol(Y)
   # result_scan <- matrix(numeric(0),ncol = m+4)  # To store iteration results if needed
-  
-  # parallel computing
-  library(doParallel)
-  library(foreach)
   
   # Detect number of available cores
   num_cores <- core  # safe: leaves one core for OS
