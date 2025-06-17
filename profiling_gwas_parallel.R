@@ -1,7 +1,7 @@
 
 ###################  function for GWAS  ##################
 
-profiling_gwas <- function(P, Genotypes, K, ID, name){
+profiling_gwas <- function(P, Genotypes, K, ID, name="gwas"){
   start_time <- Sys.time()
   n = nrow(P)
   m = ncol(P)
